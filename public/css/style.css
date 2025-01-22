@@ -1,0 +1,234 @@
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 20px;
+}
+/* Form Styling */
+form {
+    background-color: #ffffff; /* White background for the form */
+    padding: 20px 30px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 500px;
+    width: 100%;
+    margin: auto; /* Center the form on the page */
+}
+
+/* Form Labels */
+form label {
+    display: block; /* Labels are displayed as blocks */
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555; /* Slightly muted color for labels */
+}
+
+/* Form Inputs and Textareas */
+form input[type="text"],
+form input[type="number"],
+form input[type="url"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc; /* Light border for inputs */
+    border-radius: 5px; /* Rounded corners for inputs */
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+    transition: border-color 0.3s ease; /* Smooth transition for border on focus */
+}
+
+/* Focused Inputs and Textareas */
+form input:focus,
+form textarea:focus {
+    border-color: #ff4500; /* Highlight border on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Submit Button */
+form button {
+    background-color: #ff4500; /* Red background for the button */
+    color: #fff; /* White text */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Button takes full width */
+}
+
+/* Submit Button Hover Effect */
+form button:hover {
+    background-color: #e63900; /* Darker red on hover */
+}
+
+/* Container for Listings */
+#listings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Individual Listing Card */
+.listing {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 25px; /* Smooth curvy corners */
+    overflow: hidden; /* To ensure image merges with the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.listing:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+.listing img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    clip-path: ellipse(100% 80% at 50% 20%); /* Curvy top */
+    transition: transform 0.3s ease;
+}
+
+.listing:hover img {
+    transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+/* Content Styling */
+.listing h4 {
+    font-size: 20px;
+    color: #ff4500;
+    margin: 15px 15px 5px 15px;
+}
+
+.listing p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 15px 10px 15px;
+}
+
+.listing p strong {
+    color: #333;
+}
+
+.logo_text a{
+    color : black; 
+}
+/* Instagram Icon */
+.fa-instagram {
+    font-size: 2rem; /* Adjust the size */
+    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4); /* Instagram gradient */
+    -webkit-background-clip: text; /* Use gradient as text color */
+    -webkit-text-fill-color: transparent; /* Transparent text for gradient effect */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.fa-instagram:hover {
+    transform: scale(1.2); /* Zoom effect */
+    filter: brightness(1.2); /* Brighten on hover */
+}
+
+/* Facebook Icon */
+.fa-facebook {
+    font-size: 2rem; /* Adjust the size */
+    background: linear-gradient(45deg, #1877f2, #3b5998); /* Facebook gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.fa-facebook:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+/* Twitter Icon */
+.fa-twitter {
+    font-size: 2rem; /* Adjust the size */
+    background: linear-gradient(45deg, #1da1f2, #0d8bde); /* Twitter gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.fa-twitter:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+
+    
+
+/* Buttons */
+.listing form button {
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px; /* Curvy buttons */
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin: 10px;
+}
+
+.listing form button:hover {
+    background-color: #e63900;
+    transform: scale(1.1); /* Button hover effect */
+}
+
+/* Footer Styling */
+footer {
+    background-color:#ebedeb;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+footer .f-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+footer .f-info-socials i {
+    font-size: 24px;
+    margin: 0 10px;
+    color:black;
+    transition: color 0.3s ease;
+}
+
+footer .f-info-socials i:hover {
+    color: #000;
+}
+
+footer .info_links a {
+    text-decoration: none;
+    color: black !important;;
+    font-size: 14px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+footer .info_links a:hover {
+    color: #000;
+    text-decoration: underline;
+}

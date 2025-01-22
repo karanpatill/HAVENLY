@@ -1,0 +1,19 @@
+{
+  "name": "majorproject",
+  "version": "1.0.0",
+  "description": "\"THIS PROJECT IS BUILD TO LEARN AND DEPLOY FRONTEND BACKEND AND DATABASE AT THE SAME TIME\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "KARAN PATIL",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "ejs-mate": "^4.0.0",
+    "express": "^4.21.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.9.3",
+    "nodemon": "^3.1.9"
+  }
+}

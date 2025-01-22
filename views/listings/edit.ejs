@@ -1,0 +1,28 @@
+<% layout("/layouts/Boilerplate") %>
+<body>
+    <h1>Edit Post</h1>
+    <form method="post" action="/listings?_method=PUT">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" value="<%=ID.title%>" required>
+        
+        <label for="description">Description</label>
+        <textarea name="description" id="description" required><%=ID.description%></textarea>
+        
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price" value="<%=ID.price%>" required>
+        
+        <label for="location">Location</label>
+        <input type="text" name="location" id="location" value="<%=ID.location%>"  required>
+        
+        <label for="country">Country</label>
+        <input type="text" name="country" id="country" value="<%=ID.country%>" required>
+        
+        <label for="image-filename">Image Filename</label>
+        <input type="text" name="image[filename]" id="image-filename" value="<%= ID.filenameage %>"  required>
+        
+        <label for="image-url">Image URL</label>
+        <input type="url" name="image[url]" id="image-url" value="<%=ID.url%>" required>
+        
+        <button type="submit"></button>
+    </form>
+</body>
