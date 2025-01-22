@@ -5,7 +5,7 @@
 ---
 
 ### 🚀 **Features**
-- **User Authentication**: Users can sign up, log in, and log out securely.
+
 - **Property Listings**: Users can add, edit, and delete their property listings.
 - **Responsive Design**: The application adjusts to mobile, tablet, and desktop screens seamlessly.
 - **RESTful APIs**: All interactions with the database (add, edit, delete) are done via REST APIs.
@@ -20,7 +20,7 @@ This project is still in the **working phase**, and many features are being adde
 - User profile management
 - Booking functionality
 - Search and filter options
-- Payment integration
+- **User Authentication**: Users can sign up, log in, and log out securely.
 
 Stay tuned for more features in future releases!
 
