@@ -22,7 +22,7 @@ async function main(){
     await mongoose.connect(mongourl);
 }
 app.get("/", (req, res) => { 
-    res.send("Hello World");
+    res.render("index.ejs");
 });
 
 app.get("/listings", async (req, res) => {
