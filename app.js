@@ -21,8 +21,9 @@ catch(err => console.log(err));
 async function main(){
     await mongoose.connect(mongourl);
 }
-app.get("/", (req, res) => { 
-    res.render("listings/index.ejs");
+app.get("/", async(req, res) => { 
+    const listings =  await listing.find({});
+    res.render('listings/index.ejs', { listings });
 });
 
 app.get("/listings", async (req, res) => {
