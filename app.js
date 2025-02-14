@@ -6,6 +6,7 @@ const listing = require('./models/listing.js');
 const path = require('path');
 const methodOverride = require('method-override');
  const ejsMate = require('ejs-mate');
+ const wrapAsync = require('./utils/wrapAsync.js');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,18 +35,23 @@ app.get("/listings/new",  (req, res) => {
     res.render('listings/new.ejs');
 });
 
-app.post("/listings", async (req, res) => {
+app.post("/listings", async (req, res , next) => {
+  try{
     let newdata = new listing(req.body);
     await newdata.save();
     console.log(newdata);
     res.redirect('/listings');
+  }
+  catch(err){
+    next(err);
+  }
     
 });
 
 app.get("/listings/:id/edit", async (req, res) => {
     const { id } = req.params;
     const ID = await listing.findById(id);
-    console.log(ID); // Log the retrieved document
+    console.log(ID); 
     if (!ID) {
         return res.status(404).send("Listing not found");
     }
@@ -62,6 +68,9 @@ app.delete("/listings/:id", async (req, res) => {
     res.redirect('/listings');
 });
 
+app.use((err,res,req , nextTick)=> {
+    res.send("Something went wrong");
+});
 app.get("/test", (req, res) => {
     res.render('test.ejs');
 });

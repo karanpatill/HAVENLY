@@ -1,28 +1,43 @@
 <% layout("/layouts/Boilerplate") -%>
 <body>
     <h1>Edit Post</h1>
-    <form method="post" action="/listings?_method=PUT">
+    <form method="post" action="/listings?_method=PUT" class="needs-validation" novalidate>
+        
         <label for="title">Title</label>
-        <input type="text" name="title" id="title" value="<%=ID.title%>" required>
-        
+        <input type="text" name="title" id="title" value="<%= ID.title %>" class="form-control" required>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Please enter a title.</div>
+
         <label for="description">Description</label>
-        <textarea name="description" id="description" required><%=ID.description%></textarea>
-        
+        <textarea name="description" id="description" class="form-control" required><%= ID.description %></textarea>
+        <div class="valid-feedback">Perfect!</div>
+        <div class="invalid-feedback">Please enter a description.</div>
+
         <label for="price">Price</label>
-        <input type="number" name="price" id="price" value="<%=ID.price%>" required>
-        
+        <input type="number" name="price" id="price" value="<%= ID.price %>" class="form-control" required>
+        <div class="valid-feedback">Valid price!</div>
+        <div class="invalid-feedback">Please enter a valid price.</div>
+
         <label for="location">Location</label>
-        <input type="text" name="location" id="location" value="<%=ID.location%>"  required>
-        
+        <input type="text" name="location" id="location" value="<%= ID.location %>" class="form-control" required>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Please enter a location.</div>
+
         <label for="country">Country</label>
-        <input type="text" name="country" id="country" value="<%=ID.country%>" required>
-        
+        <input type="text" name="country" id="country" value="<%= ID.country %>" class="form-control" required>
+        <div class="valid-feedback">Nice choice!</div>
+        <div class="invalid-feedback">Please enter a country name.</div>
+
         <label for="image-filename">Image Filename</label>
-        <input type="text" name="image[filename]" id="image-filename" value="<%= ID.filenameage %>"  required>
-        
+        <input type="text" name="image[filename]" id="image-filename" value="<%= ID.image.filename %>" class="form-control" required>
+        <div class="valid-feedback">Filename looks good!</div>
+        <div class="invalid-feedback">Please enter an image filename.</div>
+
         <label for="image-url">Image URL</label>
-        <input type="url" name="image[url]" id="image-url" value="<%=ID.url%>" required>
-        
-        <button type="submit"></button>
+        <input type="url" name="image[url]" id="image-url" value="<%= ID.image.url %>" class="form-control" required>
+        <div class="valid-feedback">Valid URL!</div>
+        <div class="invalid-feedback">Please enter a valid image URL.</div>
+
+        <button type="submit" class="">Update Listing</button>
     </form>
 </body>

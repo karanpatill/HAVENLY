@@ -79,14 +79,7 @@ form button:hover {
 
 /* Individual Listing Card */
 .listing {
-    background-color: #ffffff;
-    border: none;
-    border-radius: 25px; /* Smooth curvy corners */
-    overflow: hidden; /* To ensure image merges with the card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
+   
 }
 
 .listing:hover {
