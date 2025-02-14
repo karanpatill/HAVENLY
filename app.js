@@ -23,8 +23,7 @@ async function main(){
     await mongoose.connect(mongourl);
 }
 app.get("/", async(req, res) => { 
-    const listings =  await listing.find({});
-    res.render('listings/index.ejs', { listings });
+    res.redirect("/listings");
 });
 
 app.get("/listings", async (req, res) => {
