@@ -3,17 +3,14 @@
     <h3>All Listings</h3>
     <div id="listings-container">
         <% listings.forEach((listing) => { %>
-            <div class="listing">
-                <h4><%= listing.title %></h4>
-                <img src="<%= listing.image.url %>" alt="<%= listing.title %>">
-                <p><%= listing.description %></p>
-                <p><strong>Price:</strong> ₹<%= listing.price.toLocaleString("en-IN") %></p>
-                <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
-                <form action="/listings/<%= listing._id %>/edit" method="get">
-                    <button type="submit">Edit</button>
-                </form>
-                <form action="/listings/<%= listing._id %>?_method=DELETE" method="post">
-                    <button type="submit">Delete</button></form>
+            <div class="listing" >
+                <a href= "/listings/<%= listing.id %>">
+                     <h4><%= listing.title %></h4>
+                    <img src="<%= listing.image.url %>" alt="<%= listing.title %>">
+                    <p><%= listing.description %></p>
+                    <p><strong>Price:</strong> ₹<%= listing.price.toLocaleString("en-IN") %></p>
+                    <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
+               
             </div>
         <% }) %>
     </div>

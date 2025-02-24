@@ -25,14 +25,26 @@ async function main(){
 app.get("/", async(req, res) => { 
     res.redirect("/listings");
 });
+// Route to render the form to create a new listing
+app.get("/listings/new", (req, res) => {
+    res.render('listings/new.ejs');  // Make sure this points to the correct view for creating a new listing
+});
+
+// Route to display a specific listing by ID
+app.get("/listings/:id", async (req, res) => {
+    const { id } = req.params;
+    const list = await listing.findById(id);
+    if (!list) {
+        return res.status(404).send("Listing not found");
+    }
+    res.render('listings/show.ejs', { list });
+});
 
 app.get("/listings", async (req, res) => {
     const listings = await listing.find({});
     res.render('listings/index.ejs', { listings });
 })
-app.get("/listings/new",  (req, res) => {
-    res.render('listings/new.ejs');
-});
+  
 
 app.post("/listings", async (req, res , next) => {
   try{
@@ -69,9 +81,6 @@ app.delete("/listings/:id", async (req, res) => {
 
 app.use((err,res,req , nextTick)=> {
     res.send("Something went wrong");
-});
-app.get("/test", (req, res) => {
-    res.render('test.ejs');
 });
 
 app.listen(3000, '0.0.0.0', () => {

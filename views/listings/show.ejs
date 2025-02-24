@@ -1,0 +1,13 @@
+<% layout('/layouts/Boilerplate') %>
+<div class = "show-container">
+    <h4><%= list.title %></h4>
+    <img src="<%= list.image.url %>" alt="<%= list.title %>">
+    <p><%= list.description %></p>
+    <p><strong>Price:</strong> ₹<%= list.price.toLocaleString("en-IN") %></p>
+    <p><strong>Location:</strong> <%= list.location %>, <%= list.country %></p>
+    <form action="/listings/<%= list._id %>/edit" method="get">
+        <button type="submit">Edit</button>
+    </form>
+    <form action="/listings/<%= list._id %>?_method=DELETE" method="post">
+        <button type="submit">Delete</button></form>
+</div>
