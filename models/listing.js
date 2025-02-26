@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 
     const listingSchema = new mongoose.Schema({
@@ -10,7 +11,11 @@ const mongoose = require("mongoose");
         image: {
             filename: { type: String, required: true },
             url: { type: String, required: true }
-        }
+        },
+        reviews : [{
+            type: Schema.Types.ObjectId,
+            ref : 'Reviews',
+        }]
     });
     
 

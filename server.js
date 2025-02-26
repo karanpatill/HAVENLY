@@ -45,24 +45,19 @@ app.get("/listings", async (req, res) => {
     res.render('listings/index.ejs', { listings });
 })
   
-
-app.post("/listings", async (req, res , next) => {
-  try{
-    let newdata = new listing(req.body);
-    await newdata.save();
-    console.log(newdata);
-    res.redirect('/listings');
-  }
-  catch(err){
-    next(err);
-  }
-    
+app.post("/listings", async (req, res) => {
+    try {
+        let newListing = new listing(req.body);
+        await newListing.save();
+        res.redirect('/listings');
+    } catch (err) {
+        res.status(500).send("Something went wrong while creating the listing.");
+    }
 });
 
 app.get("/listings/:id/edit", async (req, res) => {
     const { id } = req.params;
     const ID = await listing.findById(id);
-    console.log(ID); 
     if (!ID) {
         return res.status(404).send("Listing not found");
     }
@@ -70,8 +65,14 @@ app.get("/listings/:id/edit", async (req, res) => {
 });
 
 app.put("/listings/:id", async (req, res) => {
+    try {
     const { id } = req.params;
     const ID = await listing.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    res.redirect('/listings');
+    }catch(err){
+        console.log(err);
+    }
+
 });
 app.delete("/listings/:id", async (req, res) => {
     const { id } = req.params;
@@ -79,9 +80,8 @@ app.delete("/listings/:id", async (req, res) => {
     res.redirect('/listings');
 });
 
-app.use((err,res,req , nextTick)=> {
-    res.send("Something went wrong");
-});
+
+
 
 app.listen(3000, '0.0.0.0', () => {
     console.log("Server running on http://192.168.137.1:3000");

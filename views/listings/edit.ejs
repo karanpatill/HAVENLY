@@ -1,7 +1,7 @@
 <% layout("/layouts/Boilerplate") -%>
 <body>
     <h1>Edit Post</h1>
-    <form method="post" action="/listings?_method=PUT" class="needs-validation" novalidate>
+    <form method="post" action="/listings/<%=ID.id%>?_method=PUT" class="needs-validation" novalidate>
         
         <label for="title">Title</label>
         <input type="text" name="title" id="title" value="<%= ID.title %>" class="form-control" required>

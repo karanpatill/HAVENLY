@@ -83,16 +83,18 @@ form button:hover {
 /* Container for Listings */
 #listings-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
     width: 100%;
+    margin-left: 80px;
 }
 
 
 /* Individual Listing Card */
-
 .listing {
-    border-color: #000;
+    margin-top: 50px;
+    
 }
+
 .listing:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
