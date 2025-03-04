@@ -238,3 +238,13 @@ footer .info_links a:hover {
     color: #000;
     text-decoration: underline;
 }
+.review-box{
+    margin-top: 100px;
+}
+.review-box h2{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+.range{
+    accent-color: #e63900;
+}

@@ -11,3 +11,19 @@
     <form action="/listings/<%= list._id %>?_method=DELETE" method="post">
         <button type="submit">Delete</button></form>
 </div>
+<br>
+</div>
+<hr>
+<div class="review-box">
+    <h2>Leave a Review</h2>
+    <form action="/listings/<%= list.id %>/review" method="post" novalidate class = "needs-validation">
+        <label for="rating">Rating</label>
+ 
+        <input type="range" min="1" max="5" id="rating" name="rating" class="range" value="3" required>
+
+        <label for="comment">Comment</label>
+        <textarea rows="4" cols="50" name="comment" id="comment" placeholder="Leave your comment here" required></textarea >
+        
+        <button type="submit">Submit</button>
+    </form>
+</div>
