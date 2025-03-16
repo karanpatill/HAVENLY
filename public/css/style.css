@@ -248,3 +248,29 @@ footer .info_links a:hover {
 .range{
     accent-color: #e63900;
 }
+.review-heading{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.show-review {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: flex-start; /* Align items to the top */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    gap: 20px;
+  }
+  
+ 
+  
+  /* If you want to handle cases where there's only one review */
+  @media (max-width: 768px) { /* Example breakpoint for smaller screens */
+    .show-review > ul {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+  }

@@ -27,3 +27,21 @@
         <button type="submit">Submit</button>
     </form>
 </div>
+<hr>
+<h2 class="review-heading" ><b>Reviews</b></h2>
+<div class="show-review">
+    
+    <div class = show-review>
+        <% for(let review of list.reviews) { %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Karan Patil</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">review</h6>
+                  <p class="card-text"><%= review.comment%></p>
+                    <p class="card-text">Rating: <%=review.rating%>⭐</p>
+                </div>
+              </div>
+        <% } %>
+    </div>
+   
+</div>

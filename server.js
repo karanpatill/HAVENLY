@@ -79,15 +79,19 @@ app.post("/listings", validateListing, wrapAsync(async (req, res) => {
     res.redirect('/listings');
 }));
 
+
 // Show details of a specific listing
 app.get("/listings/:id", wrapAsync(async (req, res) => {
     const { id } = req.params;
-    const list = await listing.findById(id);
+    const list = await listing.findById(id).populate({
+      path: 'reviews',
+      model: 'Review' // Specify the correct model name here
+    });
     if (!list) {
-        return res.status(404).send("Listing not found");
+      return res.status(404).send("Listing not found");
     }
     res.render('listings/show.ejs', { list });
-}));
+  }));
 
 // Render edit form for a listing
 app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
@@ -119,14 +123,14 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
 app.post("/listings/:id/review", validateReview, wrapAsync(async (req, res) => {
     const list = await listing.findById(req.params.id);
     const { rating, comment } = req.body;
-    const newReview = new Review({ rating, comment });
-
+    const newReview = new Review({ rating, comment }); // Use "Review" here
+  
     list.reviews.push(newReview);
     await newReview.save();
     await list.save();
-
+  
     res.redirect(`/listings/${list.id}`);
-}));
+  }));
 
 /* ============================
    Server Initialization
