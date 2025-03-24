@@ -13,6 +13,8 @@ const listings = require('./routes/listing.js');
 const users = require('./routes/user.js');
 const posts = require('./routes/post.js');
 const app = express();
+const cookieParser = require('cookie-parser');
+app.use(cookieParser("secretcode"));
 const port = 3000;
 
 // Set up Express and middleware
@@ -22,6 +24,23 @@ app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+
+app.get('/', (req, res) => {
+    console.dir(req.cookies);
+    res.send("Home");
+});  
+app.get("/greet", function(req, res) {
+  let {name = "Anonymous"} = req.cookies;
+    res.send(`Welcome back, ${name}`);
+});
+app.get('/getsignedcookie', function(req, res) {
+    res.cookie("fruit", "grape", {signed: true});
+    res.send("Signed cookie set");
+});
+app.get("/verify" ,(req, res) => {
+    console.dir(req.signedCookies);
+    res.send(req.signedCookies);
+});
 
 // Connect to MongoDB
 const mongourl = 'mongodb://127.0.0.1:27017/wanderlust';
