@@ -8,13 +8,15 @@ const ExpressError = require('./utils/ExpressError');
 const Listing = require('./models/listing.js'); // Fixed capitalization
 const Review = require('./models/review.js'); 
 const { listingSchema, reviewSchema } = require('./Schema.js');
-const listings = require('./routes/listing.js');
-const users = require('./routes/user.js');
-const posts = require('./routes/post.js');
+const listingsrouter = require('./routes/listing.js');
+const usersrouter = require('./routes/user.js');
 const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const app = express();
 const session = require('express-session');
+const User = require('./models/user.js');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -35,7 +37,13 @@ const sessionoption = session({
 });
 
 app.use(sessionoption); // Session first
-app.use(flash());       // Flash next
+app.use(flash());  
+     // Flash next
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
     res.locals.successmsg = req.flash('success');  
@@ -52,12 +60,13 @@ async function main() {
 main().catch(err => console.log(err));
 
 app.get("/", (req, res) => { 
-    res.redirect("/listings");
+    res.redirect("/signup");
 });
 
-app.use("/listings", listings);
-app.use("/users", users);
-app.use("/posts", posts);
+
+app.use("/listings", listingsrouter);
+app.use("/", usersrouter);
+
 
 
 /* ============================
