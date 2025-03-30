@@ -41,6 +41,7 @@ router.get("/new", (req, res) => {
 router.post("/", validateListing, wrapAsync(async (req, res) => {
     let newListing = new listing(req.body);
     await newListing.save();
+    req.flash('success', 'Listing created successfully!');
     res.redirect('/listings');
 }));
 
@@ -52,18 +53,20 @@ router.get("/:id", wrapAsync(async (req, res) => {
       path: 'reviews',
       model: 'Review' // Specify the correct model name here
     });
+
     if (!list) {
-      return res.status(404).send("Listing not found");
+        req.flash('error', 'Listing not found!');
+     return  res.redirect('/listings');
     }
     res.render('listings/show.ejs', { list });
   }));
-
 // Render edit form for a listing
 router.get("/:id/edit", wrapAsync(async (req, res) => {
     const { id } = req.params;
     const list = await listing.findById(id);
     if (!list) {
-        return res.status(404).send("Listing not found");
+        req.flash('error', 'Listing not found!');
+     return  res.redirect('/listings');
     }
     res.render('listings/edit.ejs', { list });
 }));
@@ -72,6 +75,7 @@ router.get("/:id/edit", wrapAsync(async (req, res) => {
 router.put("/:id", wrapAsync(async (req, res) => {
     const { id } = req.params;
     await listing.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    req.flash('success', 'Listing updated successfully!');
     res.redirect('/listings');
 }));
 
@@ -79,6 +83,7 @@ router.put("/:id", wrapAsync(async (req, res) => {
 router.delete("/:id", wrapAsync(async (req, res) => {
     const { id } = req.params;
     await listing.findByIdAndDelete(id);
+    req.flash('success', 'Listing deleted successfully!');
     res.redirect('/listings');
 }));
 
@@ -89,6 +94,7 @@ router.post("/:id/review", validateReview, wrapAsync(async (req, res) => {
   
     list.reviews.push(newReview);
     await newReview.save();
+    req.flash('success', 'Review added successfully!');
     await list.save();
   
     res.redirect(`/listings/${list.id}`);
@@ -98,6 +104,7 @@ router.post("/:id/review", validateReview, wrapAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     await listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
+    req.flash('success', 'Review deleted successfully!');
     res.redirect(`/listings/${id}`);
   }));
 

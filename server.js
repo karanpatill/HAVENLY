@@ -1,4 +1,3 @@
-// Import required modules
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -6,18 +5,17 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const wrapAsync = require('./utils/wrapAsync.js');
 const ExpressError = require('./utils/ExpressError');
-const listing = require('./models/listing.js');
+const Listing = require('./models/listing.js'); // Fixed capitalization
 const Review = require('./models/review.js'); 
 const { listingSchema, reviewSchema } = require('./Schema.js');
 const listings = require('./routes/listing.js');
 const users = require('./routes/user.js');
 const posts = require('./routes/post.js');
-const app = express();
+const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
-app.use(cookieParser("secretcode"));
-const port = 3000;
+const app = express();
+const session = require('express-session');
 
-// Set up Express and middleware
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.engine('ejs', ejsMate);
@@ -25,24 +23,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
-app.get('/', (req, res) => {
-    console.dir(req.cookies);
-    res.send("Home");
-});  
-app.get("/greet", function(req, res) {
-  let {name = "Anonymous"} = req.cookies;
-    res.send(`Welcome back, ${name}`);
-});
-app.get('/getsignedcookie', function(req, res) {
-    res.cookie("fruit", "grape", {signed: true});
-    res.send("Signed cookie set");
-});
-app.get("/verify" ,(req, res) => {
-    console.dir(req.signedCookies);
-    res.send(req.signedCookies);
+const sessionoption = session({
+    secret: "secret",
+    resave: false, 
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000, 
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+    }
 });
 
-// Connect to MongoDB
+app.use(sessionoption); // Session first
+app.use(flash());       // Flash next
+
+app.use((req, res, next) => {
+    res.locals.successmsg = req.flash('success');  
+    res.locals.errormsg = req.flash('error');
+    next();
+});
+
+
 const mongourl = 'mongodb://127.0.0.1:27017/wanderlust';
 async function main() {
     await mongoose.connect(mongourl);
@@ -50,31 +51,18 @@ async function main() {
 }
 main().catch(err => console.log(err));
 
-
-
-
-
-
-/* ============================
-   Routes
-============================ */
-
-// Redirect to listings page
 app.get("/", (req, res) => { 
     res.redirect("/listings");
 });
 
-
 app.use("/listings", listings);
-app.use("/users" ,users);
+app.use("/users", users);
 app.use("/posts", posts);
-
-
 
 
 /* ============================
    Server Initialization
 ============================ */
-app.listen(port, '0.0.0.0', () => {
-    console.log(`Server running on http://192.168.137.1:${port}`);
+app.listen(3000, () => {
+    console.log(`Server running on http://localhost:3000`);
 });
