@@ -7,35 +7,23 @@ body {
     color: #333;
     padding: 20px;
 }
+
+
 /* Form Styling */
 form {
-    background-color: #ffffff; /* White background for the form */
+    background-color: #ffffff;
     padding: 20px 30px;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 500px;
     width: 100%;
-    margin: auto; /* Center the form on the page */
-}
-.listing a {
-    text-decoration: none !important;
-    color: #000;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-.show-container img {
-   
-    margin-left: 400px;
-    height: 500px;
-    width: 500px;
+    margin: auto;
 }
 
-/* Form Labels */
-form label {
-    display: block; /* Labels are displayed as blocks */
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #555; /* Slightly muted color for labels */
+.listing a {
+    text-decoration: none !important;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 /* Form Inputs and Textareas */
@@ -46,25 +34,24 @@ form textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc; /* Light border for inputs */
-    border-radius: 5px; /* Rounded corners for inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 14px;
-    font-family: Arial, sans-serif;
-    box-sizing: border-box; /* Ensures padding doesn't affect total width */
-    transition: border-color 0.3s ease; /* Smooth transition for border on focus */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
-/* Focused Inputs and Textareas */
+/* Focused Inputs */
 form input:focus,
 form textarea:focus {
-    border-color: #ff4500; /* Highlight border on focus */
-    outline: none; /* Remove default outline */
+    border-color: black;
+    outline: none;
 }
 
 /* Submit Button */
 form button {
-    background-color: #ff4500; /* Red background for the button */
-    color: #fff; /* White text */
+    background-color: black;
+    color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
@@ -72,15 +59,14 @@ form button {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100%; /* Button takes full width */
+    width: 100%;
 }
 
-/* Submit Button Hover Effect */
 form button:hover {
-    background-color: #e63900; /* Darker red on hover */
+    background-color: #222;
 }
 
-/* Container for Listings */
+/* Listings Grid */
 #listings-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
@@ -88,11 +74,9 @@ form button:hover {
     margin-left: 80px;
 }
 
-
-/* Individual Listing Card */
+/* Listing Cards */
 .listing {
     margin-top: 50px;
-    
 }
 
 .listing:hover {
@@ -105,19 +89,19 @@ form button:hover {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    clip-path: ellipse(100% 80% at 50% 20%); /* Curvy top */
+    clip-path: ellipse(100% 80% at 50% 20%);
     transition: transform 0.3s ease;
 }
 
 .listing:hover img {
-    transform: scale(1.05); /* Subtle zoom on hover */
+    transform: scale(1.05);
 }
 
-/* Content Styling */
+/* Title & Text */
 .listing h4 {
     font-size: 20px;
-    color: #ff4500;
-    margin: 15px 15px 5px 15px;
+    color: black;
+    margin: 15px;
 }
 
 .listing p {
@@ -127,67 +111,16 @@ form button:hover {
 }
 
 .listing p strong {
-    color: #333;
+    color: black;
 }
-
-.logo_text a{
-    color : black; 
-}
-/* Instagram Icon */
-.fa-instagram {
-    font-size: 2rem; /* Adjust the size */
-    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4); /* Instagram gradient */
-    -webkit-background-clip: text; /* Use gradient as text color */
-    -webkit-text-fill-color: transparent; /* Transparent text for gradient effect */
-    transition: transform 0.3s ease, filter 0.3s ease;
-    cursor: pointer;
-}
-
-.fa-instagram:hover {
-    transform: scale(1.2); /* Zoom effect */
-    filter: brightness(1.2); /* Brighten on hover */
-}
-
-/* Facebook Icon */
-.fa-facebook {
-    font-size: 2rem; /* Adjust the size */
-    background: linear-gradient(45deg, #1877f2, #3b5998); /* Facebook gradient */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: transform 0.3s ease, filter 0.3s ease;
-    cursor: pointer;
-}
-
-.fa-facebook:hover {
-    transform: scale(1.2);
-    filter: brightness(1.2);
-}
-
-/* Twitter Icon */
-.fa-twitter {
-    font-size: 2rem; /* Adjust the size */
-    background: linear-gradient(45deg, #1da1f2, #0d8bde); /* Twitter gradient */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: transform 0.3s ease, filter 0.3s ease;
-    cursor: pointer;
-}
-
-.fa-twitter:hover {
-    transform: scale(1.2);
-    filter: brightness(1.2);
-}
-
-
-    
 
 /* Buttons */
 .listing form button {
-    background-color: #ff4500;
+    background-color: black;
     color: white;
     border: none;
     padding: 8px 12px;
-    border-radius: 20px; /* Curvy buttons */
+    border-radius: 20px;
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s;
@@ -195,82 +128,89 @@ form button:hover {
 }
 
 .listing form button:hover {
-    background-color: #e63900;
-    transform: scale(1.1); /* Button hover effect */
+    background-color: #222;
+    transform: scale(1.1);
 }
 
-/* Footer Styling */
-footer {
-    background-color:#ebedeb;
+/* Footer */
+.footer {
+    background: black;
     color: white;
-    padding: 40px 0;
+    padding: 20px 0;
     text-align: center;
-    font-family: Arial, sans-serif;
+    width: 100%;
+    position: relative;
+    bottom: 0;
 }
 
-footer .f-info {
+/* Footer Content */
+.f-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
-footer .f-info-socials i {
-    font-size: 24px;
+/* Footer Links */
+.info-links a {
     margin: 0 10px;
-    color:black;
-    transition: color 0.3s ease;
-}
-
-footer .f-info-socials i:hover {
-    color: #000;
-}
-
-footer .info_links a {
+    color: white;
     text-decoration: none;
-    color: black !important;;
-    font-size: 14px;
-    font-weight: bold;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    transition: 0.3s;
 }
 
-footer .info_links a:hover {
-    color: #000;
+.info-links a:hover {
+    color: #777;
     text-decoration: underline;
 }
-.review-box{
+
+/* Social Media Icons */
+.fa-instagram, .fa-facebook, .fa-twitter {
+    font-size: 2rem;
+    color: white;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.fa-instagram:hover, 
+.fa-facebook:hover, 
+.fa-twitter:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+/* Review Box */
+.review-box {
     margin-top: 100px;
 }
-.review-box h2{
+
+.review-box h2 {
     font-family: 'Times New Roman', Times, serif;
     text-align: center;
 }
-.range{
-    accent-color: #e63900;
+
+.range {
+    accent-color: black;
 }
-.review-heading{
+
+.review-heading {
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
-
 }
 
-.show-review {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 50px;
-    display: flex;
-    justify-content: flex-start; /* Align items to the left */
-    align-items: flex-start; /* Align items to the top */
-    flex-wrap: wrap; /* Allow cards to wrap to the next line */
-    gap: 20px;
-  }
-  
- 
-  
-  /* If you want to handle cases where there's only one review */
-  @media (max-width: 768px) { /* Example breakpoint for smaller screens */
+/* Responsive Adjustments */
+@media (max-width: 768px) {
     .show-review > ul {
-      flex-basis: 100%;
-      max-width: 100%;
+        flex-basis: 100%;
+        max-width: 100%;
     }
-  }
+}
+.show-container {
+    justify-content: center;
+    margin-left: 250px;
+}
+.show-container form{
+    justify-content: center;
+    margin-right: 410px;
+}
+

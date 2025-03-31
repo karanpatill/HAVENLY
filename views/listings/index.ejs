@@ -1,19 +1,31 @@
 <% layout('layouts/Boilerplate') %>
 <body>
-    <h3>All Listings</h3>
-    <div id="listings-container">
-        <% listings.forEach((listing) => { %>
-            <div class="listing" >
-                <a href= "/listings/<%= listing.id %>">
-                     <h4><%= listing.title %></h4>
-                    <img src="<%= listing.image.url %>" alt="<%= listing.title %>">
-                    <p><%= listing.description %></p>
-                    <p><strong>Price:</strong> ₹<%= listing.price.toLocaleString("en-IN") %></p>
-                    <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
-               
-            </div>
-        <% }) %>
+    <div class="container mt-4"> <!-- Center the content properly -->
+        <h3 class="text-center mb-4">All Listings</h3>
+        
+        <div class="row justify-content-center"> <!-- Centered grid -->
+            <% listings.forEach((listing) => { %>
+                <div class="col-md-4 mb-4"> <!-- Bootstrap Grid with spacing -->
+                    <div class="listing card shadow-sm p-3"> <!-- Card for better styling -->
+                        <a href="/listings/<%= listing.id %>">
+                            <h4 class=""><%= listing.title %></h4>
+                            <% if (listing.image && listing.image.url) { %>
+                                <img src="<%= listing.image.url %>" class="img-fluid rounded" alt="<%= listing.title || 'Listing Image' %>">
+                            <% } else { %>
+                                <img src="/images/default.jpg" class="img-fluid rounded" alt="No Image Available">
+                            <% } %>
+                        </a>
+                        <p class="mt-2"><%= listing.description %></p>
+                        <% if (listing.price) { %>
+                            <p><strong>Price:</strong> ₹<%= listing.price.toLocaleString("en-IN") %></p>
+                        <% } %>
+                        <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
@@ -23,4 +35,3 @@
       });
     </script>
 </body>
-

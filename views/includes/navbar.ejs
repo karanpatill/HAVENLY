@@ -1,13 +1,35 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="/">Home <span class="sr-only"></span></a>
-        <a class="nav-item nav-link" href="/listings">All Listings</a>
-        <a class="nav-item nav-link" href="/listings/new">Add New Listings</a>
+  <div class="container">
+      <a class="navbar-brand" href="/listings">
+          <i class="fa-regular fa-compass me-2"></i> <!-- Added spacing -->
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" 
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav me-auto"> <!-- Adjusted right margin -->
+              <a class="nav-item nav-link" href="/listings">
+                  <i class="fa-solid fa-house me-2"></i> Home
+              </a>
+              <a class="nav-item nav-link" href="/listings">
+                  <i class="fa-solid fa-list me-2"></i> All Listings
+              </a>
+              <a class="nav-item nav-link" href="/listings/new">
+                  <i class="fa-solid fa-plus me-2"></i> Add New Listing
+              </a>
+          </div>
+
+          <!-- Login/Signup - Moved to the right -->
+          <div class="navbar-nav ms-auto">
+              <a class="nav-item nav-link" href="/login">
+                  <i class="fa-solid fa-right-to-bracket me-2"></i> Login
+              </a>
+              <a class="nav-item nav-link btn " href="/signup">
+                  <i class="fa-solid fa-user-plus me-2"></i> Sign Up
+              </a>
+          </div>
       </div>
-    </div>
-  </nav>
+  </div>
+</nav>
