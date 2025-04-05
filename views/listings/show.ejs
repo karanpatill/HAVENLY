@@ -1,19 +1,26 @@
 <% layout('/layouts/Boilerplate') %>
 <div class = "show-container ">
     <h4><%= list.title %></h4>
+    <h3> Posted By <%= list.owner.username %></h3>
     <img src="<%= list.image.url %>" alt="<%= list.title %>">
     <p><%= list.description %></p>
     <p><strong>Price:</strong> ₹<%= list.price.toLocaleString("en-IN") %></p>
     <p><strong>Location:</strong> <%= list.location %>, <%= list.country %></p>
-    <form action="/listings/<%= list._id %>/edit" method="get">
-        <button type="submit">Edit</button>
-    </form>
-    <form action="/listings/<%= list._id %>?_method=DELETE" method="post">
-        <button type="submit">Delete</button></form>
+    <% if( currentUser &&(list.owner._id.equals( currentUser._id))) { %>
+            <form action="/listings/<%= list._id %>/edit" method="get">
+                <button type="submit">Edit</button>
+            </form>
+            <form action="/listings/<%= list._id %>?_method=DELETE" method="post">
+                <button type="submit">Delete</button></form>
+        <%} %>
+    
+   
 </div>
 <br>
 </div>
 <hr>
+<% if (currentUser) { %>
+    
 <div class="review-box">
     <h2>Leave a Review</h2>
     <form action="/listings/<%= list.id %>/review" method="post" novalidate class = "needs-validation">
@@ -27,6 +34,7 @@
         <button type="submit">Submit</button>
     </form>
 </div>
+<% }%>
 <hr>
 <h2 class="review-heading" ><b>Reviews</b></h2>
 <div class="show-review">
@@ -35,14 +43,16 @@
         <% for(let review of list.reviews) { %>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                  <h5 class="card-title">Karan Patil</h5>
+                  <h5 class="card-title">@<%= review.author.username %></h5>
                   <h6 class="card-subtitle mb-2 text-muted">review</h6>
                   <p class="card-text"><%= review.comment%></p>
                     <p class="card-text">Rating: <%=review.rating%>⭐</p>
                 </div>
+                <% if(currentUser && (review.author._id.equals(currentUser._id))) { %>
                 <form method="post" action = "/listings/<%= list._id %>/review/<%= review._id %>?_method=DELETE">
                     <button type="submit"  style="background-color: black;">Delete</button>
                 </form>
+                <% } %>
               </div>
         <% } %>
     </div>

@@ -30,6 +30,7 @@ const sessionoption = session({
     resave: false, 
     saveUninitialized: true,
     cookie: {
+        secure: false, // Set to true if using HTTPS
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000, 
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
@@ -48,6 +49,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
     res.locals.successmsg = req.flash('success');  
     res.locals.errormsg = req.flash('error');
+    res.locals.currentUser = req.user;
     next();
 });
 
@@ -60,7 +62,7 @@ async function main() {
 main().catch(err => console.log(err));
 
 app.get("/", (req, res) => { 
-    res.redirect("/signup");
+    res.redirect("/listings");
 });
 
 

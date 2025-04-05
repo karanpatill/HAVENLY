@@ -17,7 +17,11 @@ const listingSchema = new mongoose.Schema({
             type: Schema.Types.ObjectId,
             ref: "Review", // ✅ Ensure it matches the model name
         }
-    ]
+    ],
+    owner : {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
 });
 
 // ✅ Fixing the delete middleware

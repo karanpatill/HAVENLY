@@ -22,13 +22,20 @@
           </div>
 
           <!-- Login/Signup - Moved to the right -->
+
           <div class="navbar-nav ms-auto">
+            <% if(!currentUser) { %>
               <a class="nav-item nav-link" href="/login">
                   <i class="fa-solid fa-right-to-bracket me-2"></i> Login
               </a>
               <a class="nav-item nav-link btn " href="/signup">
                   <i class="fa-solid fa-user-plus me-2"></i> Sign Up
               </a>
+            <% } else { %>
+              <a class="nav-item nav-link" href="/logout">
+                  <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+              </a>
+              <% } %>
           </div>
       </div>
   </div>

@@ -12,13 +12,12 @@ async function main(){
 }
 
 const initdata = async () => {
-    try {
+    
         await listing.deleteMany({});
+        const ownerId = new mongoose.Types.ObjectId("67ea9c98ff073354a5fe88cf");
+       indata.data =   indata.data.map((obj) => ({...obj , owner : ownerId}));
         await listing.insertMany(indata.data);
         console.log("Data saved");
-    } catch (err) {
-        console.error("Error seeding data:", err);
-    }
-};
+}
 
 initdata();
