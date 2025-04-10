@@ -45,16 +45,24 @@ module.exports.showListing = async (req, res) => {
             req.flash('error', 'Listing not found!');
          return  res.redirect('/listings');
         }
-        res.render('listings/edit.ejs', { list });
+        let image = list.image.url;
+        image.replace("/uploads", "/uploads/h_200_w150_250");
+        res.render('listings/edit.ejs', { list , image });
     }
 
     module.exports.updateListing = async (req, res) => {
     
         const { id } = req.params;
-        await Listing.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+      const list=   await Listing.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+      if(req.file != undefined){ {
+        list.image = { url: req.file.path, filename: req.file.filename };
+        await list.save();
+      }
+
         req.flash('success', 'Listing updated successfully!');
         res.redirect('/listings');
     }
+}
 
     module.exports.deleteListing = async (req, res) => {
     

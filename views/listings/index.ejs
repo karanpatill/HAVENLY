@@ -1,9 +1,27 @@
 <% layout('layouts/Boilerplate') %>
 <body>
-    <div class="container mt-4"> <!-- Center the content properly -->
-        <h3 class="text-center mb-4">All Listings</h3>
-        
-        <div class="row justify-content-center"> <!-- Centered grid -->
+    <div class="container mt-4 mb-2"> <!-- Center the content properly -->
+        <!-- Filter Bar -->
+        <div class="filter-bar d-flex flex-wrap justify-content-start align-items-center mb-4 p-3 rounded">
+            <button class="btn filter-btn"><i class="fas fa-home me-2"></i>Any Type</button>
+            <button class="btn filter-btn"><i class="fas fa-rupee-sign me-2"></i>Price</button>
+            <button class="btn filter-btn"><i class="fas fa-globe me-2"></i>Country</button>
+            <button class="btn filter-btn"><i class="fas fa-bolt me-2"></i>Instant Book</button>
+            <button class="btn filter-btn"><i class="fas fa-star me-2"></i>Top Rated</button>
+            <button class="btn filter-btn"><i class="fas fa-dog me-2"></i>Pet Friendly</button>
+            <button class="btn filter-btn"><i class="fas fa-wifi me-2"></i>Wi-Fi</button>
+            <button class="btn filter-btn"><i class="fas fa-utensils me-2"></i>Kitchen</button>
+            <button class="btn filter-btn"><i class="fas fa-car me-2"></i>Free Parking</button>
+            <button class="btn filter-btn"><i class="fas fa-soap me-2"></i>Washer</button>
+            <div class = "Tax-switch">
+                <div class="form-check-reverse form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Display Total After Taxes</label>
+                  </div>
+            </div>
+          </div>
+
+        <div class="row justify-content-center "> <!-- Centered grid -->
             <% listings.forEach((listing) => { %>
                 <div class="col-md-4 mb-4"> <!-- Bootstrap Grid with spacing -->
                     <div class="listing card shadow-sm p-3"> <!-- Card for better styling -->
@@ -15,9 +33,12 @@
                                 <img src="/images/default.jpg" class="img-fluid rounded" alt="No Image Available">
                             <% } %>
                         </a>
-                        <p class="mt-2"><%= listing.description %></p>
                         <% if (listing.price) { %>
-                            <p><strong>Price:</strong> ₹<%= listing.price.toLocaleString("en-IN") %></p>
+                            <p><strong>Price:</strong> ₹<%= listing.price.toLocaleString("en-IN") %>
+                                    <i class="taxes text-muted" style="display: none;"> + 18% GST</i>
+                                </p>
+                                  
+                            </p>
                         <% } %>
                         <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
                     </div>
@@ -33,5 +54,13 @@
       $(document).ready(function () {
         $(".alert").alert();
       });
+      
+      let taxSwitch = document.getElementById('flexSwitchCheckDefault');
+taxSwitch.addEventListener('click', function() {
+    const taxElements = document.querySelectorAll('.taxes');
+    taxElements.forEach(el => {
+        el.style.display = this.checked ? 'inline' : 'none';
+    });
+});
     </script>
 </body>

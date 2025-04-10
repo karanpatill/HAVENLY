@@ -79,6 +79,31 @@ form button:hover {
     margin-top: 50px;
 }
 
+
+
+    .filter-bar {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .filter-bar button {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .filter-bar button {
+     border: #222 solid 1px;
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s;
+    }
+    .filter-bar button:hover {
+        background-color: #222;
+        color: white;
+    }
+
+
 .listing:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -207,10 +232,31 @@ form button:hover {
 }
 .show-container {
     justify-content: center;
-    margin-left: 250px;
 }
+
 .show-container form{
     justify-content: center;
     margin-right: 410px;
 }
 
+.search-form {
+    flex-grow: 1;
+    max-width: 200px; /* Adjust as needed */
+  }
+  
+  .search-input {
+    flex: 3;
+    min-width: 0;
+  }
+  
+  .search-btn {
+    white-space: nowrap;
+    padding: 1px 7px;
+    font-size: 0.875rem;
+  }
+  .searchform{
+    height: 50px;
+    width: 70px;
+    display: flex;
+  }
+  
