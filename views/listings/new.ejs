@@ -1,7 +1,7 @@
 <%- layout('/layouts/Boilerplate') %>
 <body>
     <h1>Create Listing</h1>
-    <form method="post" action="/listings" class="needs-validation" novalidate>
+    <form method="post" action="/listings" class="needs-validation" enctype="multipart/form-data" novalidate>
         
         <label for="title">Title</label>
         <input type="text" name="title" id="title" class="form-control" required>
@@ -28,15 +28,13 @@
         <div class="valid-feedback">Nice choice!</div>
         <div class="invalid-feedback">Please enter a country name.</div>
 
-        <label for="image-filename">Image Filename</label>
-        <input type="text" name="image[filename]" id="image-filename" class="form-control" required>
+        <label for="image">Upload Image</label>
+  <input type="file" name="image" id="image" class="form-control">
         <div class="valid-feedback">Filename looks good!</div>
-        <div class="invalid-feedback">Please enter an image filename.</div>
+        <div class="invalid-feedback">Please Choose a Image</div>
+        <br>
 
-        <label for="image-url">Image URL</label>
-        <input type="url" name="image[url]" id="image-url" class="form-control" required>
-        <div class="valid-feedback">Valid URL!</div>
-        <div class="invalid-feedback">Please enter a valid image URL.</div>
+        
 
         <button type="submit"  class=" ">Create Listing</button>
     </form>

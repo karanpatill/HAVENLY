@@ -1,22 +1,21 @@
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config(); // Load environment variables from .env file
+}
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
-const wrapAsync = require('./utils/wrapAsync.js');
-const ExpressError = require('./utils/ExpressError');
-const Listing = require('./models/listing.js'); // Fixed capitalization
-const Review = require('./models/review.js'); 
-const { listingSchema, reviewSchema } = require('./Schema.js');
 const listingsrouter = require('./routes/listing.js');
 const usersrouter = require('./routes/user.js');
+const reviewrouter = require('./routes/review.js');
 const flash = require('connect-flash');
-const cookieParser = require('cookie-parser');
 const app = express();
 const session = require('express-session');
 const User = require('./models/user.js');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -68,6 +67,7 @@ app.get("/", (req, res) => {
 
 app.use("/listings", listingsrouter);
 app.use("/", usersrouter);
+app.use("/listings", reviewrouter);
 
 
 

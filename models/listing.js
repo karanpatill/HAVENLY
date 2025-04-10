@@ -9,8 +9,8 @@ const listingSchema = new mongoose.Schema({
     location: { type: String, required: true },
     country: { type: String, required: true },
     image: {
-        filename: { type: String, required: true },
-        url: { type: String, required: true }
+        url: String,
+        filename: String,
     },
     reviews: [
         {
