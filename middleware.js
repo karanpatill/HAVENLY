@@ -4,7 +4,7 @@ const express = require('express');
 const listing = require('./models/listing.js');
 const router = express.Router();
 const wrapAsync = require('./utils/wrapAsync.js');
-const { listingSchema, reviewSchema } = require('./schema.js');
+const { listingSchema, reviewSchema } = require('./Schema.js');
 const ExpressError = require('./utils/ExpressError.js');
 
 module.exports.isLoggedIn = (req, res, next) => {
