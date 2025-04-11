@@ -30,7 +30,7 @@ const mongourl = process.env.ATLAS_URL;
 const store = MongoStore.create({
     mongoUrl : mongourl,
     crypto: {
-        secret : "secret",
+        secret : process.env.SECRET ,
     },
     touchAfter: 24 * 3600, // time period in seconds
 });
@@ -41,7 +41,7 @@ const store = MongoStore.create({
 
   const sessionoption = session({
     store,
-    secret: "secret",
+    secret: process.env.SECRET,
     resave: false, 
     saveUninitialized: true,
     cookie: {
