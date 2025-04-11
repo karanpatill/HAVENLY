@@ -12,6 +12,7 @@ const reviewrouter = require('./routes/review.js');
 const flash = require('connect-flash');
 const app = express();
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const User = require('./models/user.js');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -23,8 +24,23 @@ app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+const mongourl = process.env.ATLAS_URL;
 
-const sessionoption = session({
+
+const store = MongoStore.create({
+    mongoUrl : mongourl,
+    crypto: {
+        secret : "secret",
+    },
+    touchAfter: 24 * 3600, // time period in seconds
+});
+
+  store.on("error", function (e) {
+    console.log("Session store error", e);
+    });
+
+  const sessionoption = session({
+    store,
     secret: "secret",
     resave: false, 
     saveUninitialized: true,
@@ -53,7 +69,7 @@ app.use((req, res, next) => {
 });
 
 
-const mongourl = 'mongodb://127.0.0.1:27017/wanderlust';
+
 async function main() {
     await mongoose.connect(mongourl);
     console.log("MongoDB connected");

@@ -1,5 +1,5 @@
 
-
+const User = require('../models/user');
 module.exports.renderSignup = (req , res) => {
     res.render("listings/signup.ejs");
 }
@@ -19,6 +19,7 @@ module.exports.signupUser =  async (req, res, next) => {
           return res.redirect("/listings");
         });
       } catch (e) {
+        console.log(e);
         req.flash("error", "User already exists!");
         return res.redirect("/signup");
       }
