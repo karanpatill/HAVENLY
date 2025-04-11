@@ -22,6 +22,10 @@ const listingSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
     },
+    coordinates: {
+        lat: Number,
+        lng: Number
+      },
 });
 
 // ✅ Fixing the delete middleware

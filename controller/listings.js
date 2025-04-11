@@ -1,4 +1,5 @@
  const Listing = require('../models/listing.js');
+ const geocoder = require('../utils/geocoders.js'); // ✅ Ensure correct import
  
  module.exports.index = async (req, res) => {
     const listings = await Listing.find({});
@@ -9,17 +10,41 @@ module.exports.newListingForm = (req, res) => {
     res.render('listings/new.ejs');
 }
 
+ // make sure the path is correct
+
 module.exports.createListing = async (req, res) => {
-    let newListing = new Listing(req.body);
-    let image = req.file.path; 
-    let filename = req.file.filename;
-    newListing.image = { url: image, filename: filename };
-    let owner = req.user._id;
-    newListing.owner = owner; 
+    const newListing = new Listing(req.body);
+
+    // Save image
+    if(req.file) {
+      newListing.image = {
+        url: req.file.path,
+        filename: req.file.filename
+    };
+    }
+   
+
+    // Set owner
+    newListing.owner = req.user._id;
+
+    // Geocode the address
+    const geoData = await geocoder.geocode(`${req.body.location}, ${req.body.country}`);
+    if (geoData && geoData.length > 0) {
+        newListing.coordinates = {
+            lat: geoData[0].latitude,
+            lng: geoData[0].longitude
+        };
+    } else {
+        // Optional: fallback in case geocoding fails
+        console.warn("Geocoding failed, coordinates not set.");
+    }
+
     await newListing.save();
+
     req.flash('success', 'Listing created successfully!');
     res.redirect('/listings');
-}
+};
+
 
 module.exports.showListing = async (req, res) => {
     ;
@@ -39,30 +64,36 @@ module.exports.showListing = async (req, res) => {
     }
 
     module.exports.editListingForm = async (req, res) => {
-        const { id } = req.params;
-        const list = await Listing.findById(id);
-        if (!list) {
-            req.flash('error', 'Listing not found!');
-         return  res.redirect('/listings');
-        }
-        let image = list.image.url;
-        image.replace("/uploads", "/uploads/h_200_w150_250");
-        res.render('listings/edit.ejs', { list , image });
-    }
+      const { id } = req.params;
+      const list = await Listing.findById(id);
+  
+      if (!list) {
+          req.flash('error', 'Listing not found!');
+          return res.redirect('/listings');
+      }
+  
+      let image = list.image.url;
+  
+      res.render('listings/edit.ejs', { list, image });
+  };
+  
 
-    module.exports.updateListing = async (req, res) => {
-    
-        const { id } = req.params;
-      const list=   await Listing.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
-      if(req.file != undefined){ {
+  module.exports.updateListing = async (req, res) => {
+    const { id } = req.params;
+
+    const list = await Listing.findByIdAndUpdate(id, req.body, {
+        runValidators: true,
+        new: true
+    });
+
+    if (req.file !== undefined) {
         list.image = { url: req.file.path, filename: req.file.filename };
         await list.save();
-      }
-
-        req.flash('success', 'Listing updated successfully!');
-        res.redirect('/listings');
     }
-}
+
+    req.flash('success', 'Listing updated successfully!');
+    res.redirect('/listings');
+};
 
     module.exports.deleteListing = async (req, res) => {
     
