@@ -75,9 +75,66 @@ form button:hover {
 }
 
 /* Listing Cards */
-.listing {
-    margin-top: 50px;
+/* General container styling */
+.row {
+    margin-top: 2rem;
 }
+
+/* Card styling */
+.listing.card {
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.listing.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Image styling */
+.listing.card img {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Title styling */
+.listing.card h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.75rem;
+}
+
+/* Paragraph and text styling */
+.listing.card p {
+    margin: 0.25rem 0;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* Price styling */
+.listing.card p strong {
+    color: #1a1a1a;
+}
+
+.taxes {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+    .listing.card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+
 
 
 
@@ -159,14 +216,46 @@ form button:hover {
 
 /* Footer */
 .footer {
-    background: black;
-    color: white;
-    padding: 20px 0;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    padding: 2rem 1rem;
     text-align: center;
-    width: 100%;
-    position: relative;
-    bottom: 0;
+    font-family: 'Segoe UI', sans-serif;
 }
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer-brand .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-social a {
+    color: #f0f0f0;
+    margin: 0 0.5rem;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #00bfa6;
+}
+
+.footer-copy p {
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
 
 /* Footer Content */
 .f-info {
@@ -191,14 +280,14 @@ form button:hover {
 }
 
 /* Social Media Icons */
-.fa-instagram, .fa-facebook, .fa-twitter {
+.fa-instagram, .fa-github, .fa-twitter {
     font-size: 2rem;
     color: white;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .fa-instagram:hover, 
-.fa-facebook:hover, 
+.fa-github:hover, 
 .fa-twitter:hover {
     transform: scale(1.2);
     filter: brightness(1.2);
@@ -237,6 +326,12 @@ form button:hover {
 .show-container form{
     justify-content: center;
     margin-right: 410px;
+}
+
+.show-container img {
+    width: 500px;
+    height: 500px;
+    align-items: center;
 }
 
 .search-form {
