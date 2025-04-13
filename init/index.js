@@ -1,23 +1,33 @@
-const mongoose = require('mongoose');
-const indata = require('./data.js');
-const listing = require('../models/listing.js');
+const mongoose = require("mongoose");
+const Listing = require("../models/listing"); // adjust the path as needed
+const { data: sampleListings } = require("../init/data"); // import the sample data
 
-const mongourl = 'mongodb://127.0.0.1:27017/wanderlust';
-main().then(function(){
-    console.log("MongoDB connected");
-}).
-catch(err => console.log(err));
-async function main(){
-    await mongoose.connect(mongourl);
-}
+// Replace with your actual MongoDB Atlas connection string
+const MONGO_URI ="mongodb://karanpatil001:karanKP96966@ac-cofefqt-shard-00-00.ddnx6wj.mongodb.net:27017,ac-cofefqt-shard-00-01.ddnx6wj.mongodb.net:27017,ac-cofefqt-shard-00-02.ddnx6wj.mongodb.net:27017/?replicaSet=atlas-kue39t-shard-0&ssl=true&authSource=admin&retryWrites=true&w=majority&appName=Cluster0"; // Update this with your Atlas URI
 
-const initdata = async () => {
-    
-        await listing.deleteMany({});
-        const ownerId = new mongoose.Types.ObjectId("67ea9c98ff073354a5fe88cf");
-       indata.data =   indata.data.map((obj) => ({...obj , owner : ownerId}));
-        await listing.insertMany(indata.data);
-        console.log("Data saved");
-}
+mongoose
+  .connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("MongoDB connected to Atlas");
+  })
+  .catch((err) => {
+    console.error("Connection error:", err);
+  });
 
-initdata();
+const seedDB = async () => {
+    await Listing.deleteMany({});
+    console.log("Old listings removed");
+
+//     await Listing.insertMany(sampleListings);
+//     console.log("Database seeded with new listings");
+//   } catch (err) {
+//     console.error("Seeding error:", err);
+//   } finally {
+//     mongoose.connection.close();
+//   }
+};
+
+seedDB();
